@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @author zangzh
  * @date 2019/7/18 15:25
  */
-public class Test001 {
+public class Test002 {
     //[6,5,8,3,7,9]
     public static void quick(int[] a, int left, int right) {
         int i,j,t,temp;
