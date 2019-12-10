@@ -7,15 +7,24 @@
 @GeneratedValue 生成策略
 |- strategy：指定策略，AUTO/IDENTITY/SEQUENCE/TABLE 通过表产生键
 示例：@TableGenerator(name = "pk_gen",
-    table="tb_generator",
-    pkColumnName="gen_name",
-    valueColumnName="gen_value",
-    pkColumnValue="PAYABLEMOENY_PK",
+    table="tb_generator",//表名
+    pkColumnName="gen_name",//主键表的列名称
+    valueColumnName="gen_value", //主键表的列名称
+    pkColumnValue="PAYABLEMOENY_PK", //当前表的主键列在主键表中的名称
     allocationSize=1
 )
 @Column
-@Transient
-@Temporal 时间精度
+@Transient 忽略
+修改时间默认值示例：
+@UpdateTimestamp
+@Temporal(TemporalType.TIMESTAMP)
+private Date updateTime;
+//创建时间默认值示例：
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name = "t_time")
+@CreationTimestamp
+private Date time;
+
 一对一
 @OneToOne(cascade=CascadeType.ALL)
 @JoinColumn(name = "address_id", referencedColumnName = "id")
@@ -29,5 +38,7 @@
 @ManyToMany
 @JoinTable(name = "user_authority",joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "authority_id"))
+
+
 
 
