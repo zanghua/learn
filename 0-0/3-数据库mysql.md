@@ -9,11 +9,30 @@
 (1)读取配置文件缓存到Configuration对象，用以创建SqlSessionFactory
 (2)SqlSession执行过程
 
-###### 怎么运行
+###### 运行过程
+
+1. 构建SqlSessionFactory/Configuration
+(1)主要通过SqlSessionFacotryBuild去构建
+(2)XMLConifgBuilder解析xml,并将读取解析的数据保存到(构建)Configuration类,
+(3)注意几乎所有配置都存到这里了.Mapping映射器
+(4)使用Configuration去创建SqlSessionFactory(默认实现DefaultSqlSessionFactory)
+(5)Mapper映射器组成:MappedStatement/SqlSource/BoundSql
+|- MappedStatement:保存一个节点(select|insert...)
+|- SqlSource:是提供BoundSql地方,是MappedStatement的属性
+|- BoundSql:它是建立 Sql和参数的地方.
+2. SqlSession运行过程
+(1)旧版本中使用SqlSession，在新版建议使用Mapper
+|- Mapper映射是通过动态代理实现的，MapperProxyFactory,最后MapperMethod.execute(SqlSession)
+(2)SqlSession下的四大对象,通过类名与方法名就能匹配到SQL
+|- Executor:代表执行器，它来调度下面三个Handler
+|- StatementHandler的作用是使用数据库statement执行，它是核心，起承上启下作用。
+|- ParameterHandler用于对SQL参数的处理
+|- resultHandler对数据集ResultSet的封装处理
+
+
 
 Mapper是个接口，在运行时，查看发现Mybatis为我们创建代理类，
-动态代理分为两种：一种是JDK反射机制提供的代理。
-另一种是CGLIB代理
+
 
 
 
