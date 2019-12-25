@@ -28,6 +28,7 @@
 |- StatementHandler的作用是使用数据库statement执行，它是核心，起承上启下作用。
 |- ParameterHandler用于对SQL参数的处理
 |- resultHandler对数据集ResultSet的封装处理
+3. 插件
 
 
 
