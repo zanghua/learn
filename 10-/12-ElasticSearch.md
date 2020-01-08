@@ -1,4 +1,6 @@
-# Redis
+# ElasticSearch
+
+- /ɪˈlæstɪk/  /sɜːrtʃ/
 
 ## 原理
 
